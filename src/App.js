@@ -34,7 +34,7 @@ function App() {
   }
 
   useEffect( () => {
-    const apiKey = ''
+    const apiKey = process.env.apiKey
     const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=10&aqi=no&alerts=no`
     fetch(url)
         .then(resp => {return resp.json()})
