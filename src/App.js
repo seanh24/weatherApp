@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Current from './Current';
-import DailyForecast from './DailyForecast';
-import Hourly from './Hourly';
+import Current from './components/Current';
+import DailyForecast from './components/DailyForecast';
+import Hourly from './components/Hourly';
 import { FaSearch } from 'react-icons/fa'
-import cloudy from './cloudy.jpg'
+import cloudy from './assets/cloudy.jpg'
 
 
 function App() {
@@ -34,7 +34,7 @@ function App() {
   }
 
   useEffect( () => {
-    const apiKey = process.env.API_KEY
+    const apiKey = process.env.REACT_APP_API_KEY
     const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=10&aqi=no&alerts=no`
     fetch(url)
         .then(resp => {return resp.json()})
@@ -42,7 +42,7 @@ function App() {
             setCurrentData(data.current)
             setForecastData(data.forecast)
             setLocation(data.location)
-            console.log('fetch')
+            console.log(data)
         })
         .then(() => {setFetched(true)})
         .catch(() => console.err)
